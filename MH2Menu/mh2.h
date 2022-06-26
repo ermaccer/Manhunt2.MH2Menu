@@ -42,6 +42,13 @@ void(*CFileNames_setPlayer)(CString*);
 void MH2_Init(int addr);
 
 
+enum eGameVersion {
+	GAME_USA,
+	GAME_EUROPE
+};
+
+int GetGameVersion();
+
 
 enum eCollectableType {
 	CT_TRIPWIRE = 1,
