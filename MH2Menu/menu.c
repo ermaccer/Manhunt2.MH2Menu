@@ -554,8 +554,17 @@ void Menu_Process_Toggles()
 	if (CScene_FindPlayer())
 		CEntity_SetFlag(CScene_FindPlayer(), 0x100, m_bGodMode);
 
-	*(int*)(GetBaseAddr() + 0x31FFA8) = m_bFreeCamera;
-	*(int*)(GetBaseAddr() + 0x31FFAC) = m_bLockCamera;
+	if (GetGameVersion() == GAME_EUROPE)
+	{
+		*(int*)(GetBaseAddr() + 0x3200A8) = m_bFreeCamera;
+		*(int*)(GetBaseAddr() + 0x3200AC) = m_bLockCamera;
+	}
+	else
+	{
+		*(int*)(GetBaseAddr() + 0x31FFA8) = m_bFreeCamera;
+		*(int*)(GetBaseAddr() + 0x31FFAC) = m_bLockCamera;
+	}
+
 
 	// TODO
 	/*
@@ -569,8 +578,13 @@ void Menu_Process_Toggles()
 		}
 	*/
 
-	*(int*)(GetBaseAddr() + 0x31D190) = m_bDisplayBodyCount;
+	if (GetGameVersion() == GAME_EUROPE)
+		*(int*)(GetBaseAddr() + 0x31D290) = m_bDisplayBodyCount;
+	else
+		*(int*)(GetBaseAddr() + 0x31D190) = m_bDisplayBodyCount;
 
+	// TODO
+	/*
 	if (m_bDisplayBodyCount)
 	{
 		if (m_bEnableBodyCount)
@@ -580,6 +594,7 @@ void Menu_Process_Toggles()
 			*(int*)(GetBaseAddr() + 0x31D194) = kills + execs;
 		}
 	}
+	*/
 }
 
 void Menu_OnKeyUp()
@@ -665,7 +680,10 @@ void Menu_Update()
 		if (pad.Buttons & PSP_CTRL_UP)
 		{
 			TheMenu.m_bActive ^= 1;
-			*(int*)(GetBaseAddr() + 0x31DB60) ^= 1;
+			int addr = 0x31DB60;
+			if (GetGameVersion() == GAME_EUROPE)
+				addr = 0x31DC60;
+			*(int*)(GetBaseAddr() + addr) ^= 1;
 
 			sceKernelDelayThread(125000);
 		}
@@ -677,10 +695,13 @@ void Menu_Update()
 		{
 			if (pad.Buttons & PSP_CTRL_TRIANGLE)
 			{
-				*(int*)(GetBaseAddr() + 0x31DB60) ^= 1;
+				int addr = 0x31DB60;
+				if (GetGameVersion() == GAME_EUROPE)
+					addr = 0x31DC60;
+				*(int*)(GetBaseAddr() + addr) ^= 1;
 
 				sceKernelDelayThread(125000);
-				CFrontend_PrintInfo(4, "Input flipped (status %d)!", *(int*)(GetBaseAddr() + 0x31DB60));
+				CFrontend_PrintInfo(4, "Input flipped (status %d)!", *(int*)(GetBaseAddr() + addr));
 			}
 			if (pad.Buttons & PSP_CTRL_CROSS)
 			{
@@ -692,14 +713,20 @@ void Menu_Update()
 			if (pad.Buttons & PSP_CTRL_CIRCLE)
 			{
 				// freeze world
-				*(int*)(GetBaseAddr() + 0x31FFE8) ^= 1;
+				if (GetGameVersion() == GAME_EUROPE)
+					*(int*)(GetBaseAddr() + 0x3200E8) ^= 1;
+				else
+					*(int*)(GetBaseAddr() + 0x31FFE8) ^= 1;
 
 				sceKernelDelayThread(125000);
 			}
 
 		}
 	}
-	if (*(int*)(GetBaseAddr() + 0x31FFA8))
+	int cam_addr = 0x31FFA8;
+	if (GetGameVersion() == GAME_EUROPE)
+		cam_addr = 0x3200A8;
+	if (*(int*)(GetBaseAddr() + cam_addr))
 	{
 		if (pad.Buttons & PSP_CTRL_RTRIGGER)
 		{
