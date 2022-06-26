@@ -35,10 +35,20 @@ int Init(u32 addr)
 	MH2_Init(addr);
 	sceKernelStartThread(thid, 0, 0);
 	Menu_Init();
-	MakeCall(0x197498, (int)Menu_Function); 
-	MakeCall(0x22E7F0, (int)SetPlayer);
-	MakeCall(0x22EBE4, (int)SetPlayer);
-	Nop(0x27EBF8);
+	if (GetGameVersion() == GAME_EUROPE)
+	{
+		MakeCall(0x197498, (int)Menu_Function);
+		MakeCall(0x22E8B8, (int)SetPlayer);
+		MakeCall(0x22ECAC, (int)SetPlayer);
+		Nop(0x27ED0C);
+	}
+	else
+	{
+		MakeCall(0x197498, (int)Menu_Function);
+		MakeCall(0x22E7F0, (int)SetPlayer);
+		MakeCall(0x22EBE4, (int)SetPlayer);
+		Nop(0x27EBF8);
+	}
 
 
 
