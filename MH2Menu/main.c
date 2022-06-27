@@ -55,11 +55,6 @@ int Init(u32 addr)
 	return 0;
 }
 
-
-static void CheckModules() { // PPSSPP only
-	
-}
-
 int OnModuleStart(SceModule2 *mod) {
 	char *modname = mod->modname;
 

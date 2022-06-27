@@ -59,27 +59,25 @@ void MH2_Init(int addr)
 	}
 	else if (GetGameVersion() == GAME_EUROPE)
 	{
-		CFrontend_PrintInfo = (void*)(addr + 0x195BD0);									 // OK
-		CFrontend_Print8 = (void*)(addr + 0x195C40);									 // OK
-		CFrontend_SetDrawRGBA = (void*)(addr + 0x1957E8);								 // OK
-		CRenderer_SetIngameInfoRenderStates = (void*)(addr + 0x2848A8);					 // OK
-		CGameInfo_Render = (void*)(addr + 0x1A08F0);									 // OK
-		CCharacter_CreateInventoryItem = (void*)(addr + 0x1382D8);						 // OK
-		CCollectable_GetNameStringFromType = (void*)(addr + 0x1784A4);					 // OK
-		CEntityManager_GetEntityTypeDataFromName = (void*)(addr + 0x12B41C);			 // OK
-		CRenderer_DrawQuad2d = (void*)(addr + 0x1A1020);								 // OK
-		CPlayer_IsExecuting = (void*)(addr + 0x1F4CB8);									 // OK
-		CInventory_FindItemWithCollectableType = (void*)(addr + 0x1C7394);				 // OK
-		CAmmoWeapon_SetAmmo = (void*)(addr + 0x2777BC);									 // OK
-		CInputManager_EventHandler = (void*)(addr + 0x1C3DD0);							 // OK
-		CFileNames_setPlayer = (void*)(addr + 0x192C1C);								 // OK
-		CPed_ChangePedHead = (void*)(addr + 0x13B9FC);									 // OK
-		CWeather_ForceWeather = (void*)(addr + 0x2663E8);								 // OK
-		CPed_SetPos = (void*)(addr + 0x169440);											 // OK
+		CFrontend_PrintInfo = (void*)(addr + 0x195BD0);									
+		CFrontend_Print8 = (void*)(addr + 0x195C40);									
+		CFrontend_SetDrawRGBA = (void*)(addr + 0x1957E8);								
+		CRenderer_SetIngameInfoRenderStates = (void*)(addr + 0x2848A8);					
+		CGameInfo_Render = (void*)(addr + 0x1A08F0);									
+		CCharacter_CreateInventoryItem = (void*)(addr + 0x1382D8);						
+		CCollectable_GetNameStringFromType = (void*)(addr + 0x1784A4);					
+		CEntityManager_GetEntityTypeDataFromName = (void*)(addr + 0x12B41C);			
+		CRenderer_DrawQuad2d = (void*)(addr + 0x1A1020);								
+		CPlayer_IsExecuting = (void*)(addr + 0x1F4CB8);									
+		CInventory_FindItemWithCollectableType = (void*)(addr + 0x1C7394);				
+		CAmmoWeapon_SetAmmo = (void*)(addr + 0x2777BC);									
+		CInputManager_EventHandler = (void*)(addr + 0x1C3DD0);							
+		CFileNames_setPlayer = (void*)(addr + 0x192C1C);								
+		CPed_ChangePedHead = (void*)(addr + 0x13B9FC);									
+		CWeather_ForceWeather = (void*)(addr + 0x2663E8);								
+		CPed_SetPos = (void*)(addr + 0x169440);											
 	}
 }
-// 0 - us
-// 1 - europe
 
 int GetGameVersion()
 {
