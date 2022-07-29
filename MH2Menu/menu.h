@@ -1,7 +1,7 @@
 #pragma once
 #include "mh2.h"
 
-#define MH2MENU_VERSION "1.0"
+#define MH2MENU_VERSION "1.1"
 
 enum eMenuItems {
 	MENU_WEAPONS,

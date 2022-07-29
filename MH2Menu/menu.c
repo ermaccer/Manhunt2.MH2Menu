@@ -322,49 +322,51 @@ void Menu_Draw()
 #ifdef DEBUG
 		else if (m_nCurrentMenuOpen == MENU_DEBUG)
 		{
-			float x = 0.02f;
-			float y = 0.15f;
+			if (GetGameVersion() == GAME_USA)
+			{
+				float x = 0.02f;
+				float y = 0.15f;
 
 
-			struct CPadState padState = *(struct CPadState*)(GetBaseAddr() + 0x41E888);
-			sprintf(buffer, "CInputManager::m_padState: %x OS: %x", GetBaseAddr() + 0x41E888, GetBaseAddr() + 0x330940);
-			CFrontend_SetDrawRGBA(0, 0, 0, 255);
-			CFrontend_Print8(buffer, 1, x + 0.005, y + 0.005, 1, 1, 0);
-			CFrontend_SetDrawRGBA(80, 80, 80, 255);
-			CFrontend_Print8(buffer, 1, x, y, 1, 1, 0);
+				struct CPadState padState = *(struct CPadState*)(GetBaseAddr() + 0x41E888);
+				sprintf(buffer, "CInputManager::m_padState: %x OS: %x", GetBaseAddr() + 0x41E888, GetBaseAddr() + 0x330940);
+				CFrontend_SetDrawRGBA(0, 0, 0, 255);
+				CFrontend_Print8(buffer, 1, x + 0.005, y + 0.005, 1, 1, 0);
+				CFrontend_SetDrawRGBA(80, 80, 80, 255);
+				CFrontend_Print8(buffer, 1, x, y, 1, 1, 0);
 
-			y += 0.075f;
+				y += 0.075f;
 
-			sprintf(buffer, "Left Stick X: %f Y: %f", padState.m_fStickX, padState.m_fStickY);
-			CFrontend_SetDrawRGBA(0, 0, 0, 255);
-			CFrontend_Print8(buffer, 1, x + 0.005, y + 0.005, 1, 1, 0);
-			CFrontend_SetDrawRGBA(80, 80, 80, 255);
-			CFrontend_Print8(buffer, 1, x, y, 1, 1, 0);
+				sprintf(buffer, "Left Stick X: %f Y: %f", padState.m_fStickX, padState.m_fStickY);
+				CFrontend_SetDrawRGBA(0, 0, 0, 255);
+				CFrontend_Print8(buffer, 1, x + 0.005, y + 0.005, 1, 1, 0);
+				CFrontend_SetDrawRGBA(80, 80, 80, 255);
+				CFrontend_Print8(buffer, 1, x, y, 1, 1, 0);
 
-			y += 0.075f;
+				y += 0.075f;
 
-			sprintf(buffer, "Right Stick: X: %f Y: %f",padState.m_fRStickX, padState.m_fRStickY);
-			CFrontend_SetDrawRGBA(0, 0, 0, 255);
-			CFrontend_Print8(buffer, 1, x + 0.005, y + 0.005, 1, 1, 0);
-			CFrontend_SetDrawRGBA(80, 80, 80, 255);
-			CFrontend_Print8(buffer, 1, x, y, 1, 1, 0);
+				sprintf(buffer, "Right Stick: X: %f Y: %f", padState.m_fRStickX, padState.m_fRStickY);
+				CFrontend_SetDrawRGBA(0, 0, 0, 255);
+				CFrontend_Print8(buffer, 1, x + 0.005, y + 0.005, 1, 1, 0);
+				CFrontend_SetDrawRGBA(80, 80, 80, 255);
+				CFrontend_Print8(buffer, 1, x, y, 1, 1, 0);
 
-			y += 0.075f;
+				y += 0.075f;
 
-			sprintf(buffer, "Button: 0x%X", padState.m_padButton);
-			CFrontend_SetDrawRGBA(0, 0, 0, 255);
-			CFrontend_Print8(buffer, 1, x + 0.005, y + 0.005, 1, 1, 0);
-			CFrontend_SetDrawRGBA(80, 80, 80, 255);
-			CFrontend_Print8(buffer, 1, x, y, 1, 1, 0);
+				sprintf(buffer, "Button: 0x%X", padState.m_padButton);
+				CFrontend_SetDrawRGBA(0, 0, 0, 255);
+				CFrontend_Print8(buffer, 1, x + 0.005, y + 0.005, 1, 1, 0);
+				CFrontend_SetDrawRGBA(80, 80, 80, 255);
+				CFrontend_Print8(buffer, 1, x, y, 1, 1, 0);
 
-			y += 0.075f;
-			struct SystemPad pad = *(struct SystemPad*)(GetBaseAddr() + 0x330940);
-			sprintf(buffer, "Button: %x RS:  %d %d",pad.button, pad.rX, pad.rY);
-			CFrontend_SetDrawRGBA(0, 0, 0, 255);
-			CFrontend_Print8(buffer, 1, x + 0.005, y + 0.005, 1, 1, 0);
-			CFrontend_SetDrawRGBA(80, 80, 80, 255);
-			CFrontend_Print8(buffer, 1, x, y, 1, 1, 0);
-
+				y += 0.075f;
+				struct SystemPad pad = *(struct SystemPad*)(GetBaseAddr() + 0x330940);
+				sprintf(buffer, "Button: %x RS:  %d %d", pad.button, pad.rX, pad.rY);
+				CFrontend_SetDrawRGBA(0, 0, 0, 255);
+				CFrontend_Print8(buffer, 1, x + 0.005, y + 0.005, 1, 1, 0);
+				CFrontend_SetDrawRGBA(80, 80, 80, 255);
+				CFrontend_Print8(buffer, 1, x, y, 1, 1, 0);
+			}		
 		}
 #endif
 		else if (m_nCurrentMenuOpen == MENU_PLAYER)
